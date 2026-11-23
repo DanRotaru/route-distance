@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Route Distance – Travel Time &amp; Speed Calculator</title>
+    <meta
+      name="description"
+      content="Free route distance calculator. Plan a route with multiple stops and see the distance, travel time at your own speed, or the speed you need to arrive on time — by car, motorcycle, bicycle, running or walking."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Dan Rotaru" />
+    <meta name="application-name" content="Route Distance" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="canonical" href="https://dan13.me/route-distance/" />
+
+    <!-- Theme / app -->
+    <meta name="theme-color" content="#1a73e8" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Route Distance" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="/static/site.webmanifest" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/static/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Route Distance" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://dan13.me/route-distance/" />
+    <meta property="og:title" content="Route Distance – Travel Time &amp; Speed Calculator" />
+    <meta
+      property="og:description"
+      content="Plan a route with multiple stops and get the distance, travel time at your speed, or the speed you need to arrive on time. Car, motorcycle, bike, run and walk."
+    />
+    <meta property="og:image" content="https://dan13.me/route-distance/static/og-image.png" />
+    <meta property="og:image:secure_url" content="https://dan13.me/route-distance/static/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Route Distance – a route on a map with distance, travel time and required speed" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Route Distance – Travel Time &amp; Speed Calculator" />
+    <meta
+      name="twitter:description"
+      content="Plan a route with multiple stops and get the distance, travel time at your speed, or the speed you need to arrive on time."
+    />
+    <meta name="twitter:image" content="https://dan13.me/route-distance/static/og-image.png" />
+    <meta name="twitter:image:alt" content="Route Distance – a route on a map with distance, travel time and required speed" />
+
+    <!-- Performance: warm up connections the app uses right away -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://routing.openstreetmap.de" />
+    <link rel="dns-prefetch" href="https://photon.komoot.io" />
+    <!-- Non render-blocking web font (falls back to system fonts until loaded) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" />
+    </noscript>
+
+    <script>
+      // Apply the saved theme before first paint (same rule as resolveDark in src/settings.ts).
+      try {
+        var t = JSON.parse(localStorage.getItem('route-distance:map-settings') || '{}').theme;
+        if (t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches))
+          document.documentElement.dataset.theme = 'dark';
+      } catch (e) {}
+    </script>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://dan13.me/route-distance/#website",
+            "url": "https://dan13.me/route-distance/",
+            "name": "Route Distance",
+            "description": "Route distance, travel time and required speed calculator.",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://dan13.me/route-distance/#app",
+            "name": "Route Distance",
+            "url": "https://dan13.me/route-distance/",
+            "image": "https://dan13.me/route-distance/static/og-image.png",
+            "description": "Plan a route with multiple stops and see the distance, travel time at your own speed, or the speed needed to arrive in a target time — by car, motorcycle, bicycle, running or walking.",
+            "applicationCategory": "TravelApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript. Works in any modern browser.",
+            "isAccessibleForFree": true,
+            "inLanguage": "en",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": [
+              "Route distance between two or more places",
+              "Multiple stops and alternative routes",
+              "Travel time at a custom speed",
+              "Required speed to arrive in a target time",
+              "Running and walking pace (min/km or min/mi)",
+              "Car, motorcycle, bicycle, running and walking modes",
+              "Metric and imperial units",
+              "Shareable route links",
+              "Street map and satellite views, dark mode"
+            ],
+            "isPartOf": { "@id": "https://dan13.me/route-distance/#website" },
+            "author": { "@type": "Person", "name": "Dan Rotaru", "url": "https://dan13.me/" }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I calculate the distance of a route?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Enter a start and a destination (or click the map), add stops if needed, and Route Distance shows the road or path distance of each suggested route along with its travel time."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I calculate travel time at my own speed?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Pick a mode (car, motorcycle, bicycle, running or walking) and set your average speed; the travel time and arrival time are calculated from it."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I find the speed needed to arrive on time?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Switch the calculation to target time and enter how many minutes you have. Route Distance shows the average speed — or running and walking pace — needed to cover the route in that time."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is Route Distance free?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, it is free, needs no account and works in the browser on desktop and mobile. Routing uses OpenStreetMap data."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
