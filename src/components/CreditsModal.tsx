@@ -1,4 +1,3 @@
-import { ANALYTICS } from '../analytics';
 import type { MapImagery } from '../settings';
 import { Modal, useModalClose } from './Modal';
 
@@ -9,7 +8,7 @@ interface Credit {
   imagery?: MapImagery;
 }
 
-const CREDITS: { title: string; items: Credit[] }[] = [
+const CREDITS: { title?: string; items: Credit[] }[] = [
   {
     title: 'Map imagery',
     items: [
@@ -58,14 +57,14 @@ const CREDITS: { title: string; items: Credit[] }[] = [
     ],
   },
   {
-    title: 'Analytics',
     items: [
-      ...(ANALYTICS.clarity
-        ? [{ what: 'Usage recordings & heatmaps', by: [{ text: 'Microsoft Clarity', href: 'https://privacy.microsoft.com/privacystatement' }] }]
-        : []),
-      ...(ANALYTICS.ga
-        ? [{ what: 'Usage statistics', by: [{ text: 'Google Analytics', href: 'https://policies.google.com/privacy' }] }]
-        : []),
+      {
+        what: 'Analytics',
+        by: [
+          { text: 'Google Analytics', href: 'https://policies.google.com/privacy' },
+          { text: 'Microsoft Clarity', href: 'https://privacy.microsoft.com/privacystatement' },
+        ],
+      },
     ],
   },
   {
@@ -88,21 +87,18 @@ export function CreditsModal({ imagery, onClose }: { imagery: MapImagery; onClos
           <b>Everything stays on your device.</b> Your saved locations, settings and speeds are stored only in this
           browser. There are no accounts, and this app has no server of its own that collects your data.
         </p>
-        {(ANALYTICS.clarity || ANALYTICS.ga) && (
-          <p>
-            To improve the app, anonymous usage is measured with{' '}
-            {[ANALYTICS.clarity && 'Microsoft Clarity', ANALYTICS.ga && 'Google Analytics'].filter(Boolean).join(' and ')} (pages
-            and clicks, device and browser type). Addresses, routes, the map and your saved locations are hidden from them.
-          </p>
-        )}
+        <p>
+          To improve the app, anonymous usage is measured with Microsoft Clarity and Google Analytics (pages and
+          clicks, device and browser type). Addresses, routes, the map and your saved locations are hidden from them.
+        </p>
         <p>
           To show maps, find addresses and calculate routes, the points you search for or pick are sent directly to
           the services listed below, only when needed. Your list of saved locations is never uploaded anywhere.
         </p>
       </section>
       {CREDITS.filter((g) => g.items.length).map((group) => (
-        <section key={group.title}>
-          <h3>{group.title}</h3>
+        <section key={group.title ?? group.items[0].what}>
+          {group.title && <h3>{group.title}</h3>}
           <ul className="credit-list">
             {group.items.map((c) => (
               <li key={`${c.what}-${c.imagery ?? ''}`}>

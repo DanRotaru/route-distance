@@ -85,6 +85,26 @@
       } catch (e) {}
     </script>
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtm.js?id=G-Y14P7SCC0F"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // Page URL without the #… part (it holds the route's coordinates and place names).
+      gtag('config', 'G-Y14P7SCC0F', { page_location: location.origin + location.pathname, anonymize_ip: true });
+    </script>
+
+    <!-- Microsoft Clarity (masking off: the whole page is unmasked) -->
+    <script>
+      document.documentElement.setAttribute('data-clarity-unmask', 'true');
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "zi5yx6c3es");
+    </script>
+
     <!-- Structured data -->
     <script type="application/ld+json">
       {
